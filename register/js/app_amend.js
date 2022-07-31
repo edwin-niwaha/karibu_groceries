@@ -1,4 +1,4 @@
-const usernameEl = document.querySelector('#username');
+const usernameEl = document.querySelector('#userdd');
 const useroleEl = document.querySelector('#ddrole');
 const userbranchEl = document.querySelector('#ddbranch');
 const userphotoEl = document.querySelector('#file');
@@ -14,18 +14,12 @@ const checkUsername = () => {
 
     let valid = false;
 
-    const min = 3,
-        max = 25;
+    const userdd = usernameEl.value.trim();
 
-    const username = usernameEl.value.trim();
-
-    if (!isRequired(username)) {
-        showError(usernameEl, 'Username cannot be blank.');
-        
-    } else if (!isBetween(username.length, min, max)) {
-        showError(usernameEl, `Username must be between ${min} and ${max} characters.`)
-    } else if (!letters.test(username)) {
-        alert('Name field requires only alphabet characters');
+    if (!isRequired(userdd)) {
+        // if (userdd.selectedIndex < 1){
+        showError(usernameEl, 'Please select user name.'); 
+        return false; 
     }
     else {
         showSuccess(usernameEl);
@@ -228,7 +222,7 @@ const debounce = (fn, delay = 500) => {
 
 form.addEventListener('input', debounce(function (e) {
     switch (e.target.id) {
-        case 'username':
+        case 'userdd':
             checkUsername();
             break;
         case 'ddrole':
