@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="../assets/images/favicon.ico">
+    <link rel="shortcut icon" href="../assets/img/favicons/favicon-32x32.png">
     <title>Karibu Groceries | Dashboard</title>
     <link href="../plugins/switchery/switchery.min.css" rel="stylesheet" />
     <link href="../plugins/morris/morris.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="../Style/chosen.css" /><!-- Important for searhable dropdwn-->
-
+    <link rel="stylesheet" href="../register/css/style.css">
     <!--load fontawesome cdn-->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
@@ -23,28 +23,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style type="text/css">
-        body {
-            /*background-color:#DDDDDD;*/
-            background: url(../images/main-qimg1.jpg);
-        }
 
-        .auto-style1 {
-            font-size: large;
-            font-style: italic;
-        }
-
-        .auto-style5 {
-            color: #006666;
-            font-size: 18px;
-            font-family: 'Lucida Calligraphy';
-            font-weight: 500;
-        }
-
-        .auto-style6 {
-            color: #FF3300;
-        }
-    </style>
+    <script>
+        //alert("hello world!")
+    </script>
 
 </head>
 
@@ -60,7 +42,7 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="./add.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
+                    <a href="./add.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groc</span></a>
                 </div>
             </div>
 
@@ -133,10 +115,10 @@
                         </button>
                     </li>
                     <li class="hide-phone app-search">
-                        <form role="search" class="">
+                        <!-- <form role="search" class="">
                             <input type="text" placeholder="Search..." class="form-control">
                             <a href="#"><i class="fa fa-search"></i></a>
-                        </form>
+                        </form> -->
                     </li>
                 </ul>
 
@@ -264,7 +246,7 @@
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="list-unstyled">
-                                <li><a href="./register/add.html" target="_self">New User</a></li>
+                                <li><a href="./add.html" target="_self">New User</a></li>
                                 <li><a href="#" target="_self">User List</a></li>
                                 <li><a href="#" target="_self">Roles List</a></li>
                             </ul>
@@ -333,58 +315,51 @@
                         </div>
                     </div>
 
-
-                    <div class="row">
-                        <!-- content removed -->
-                    </div>
-                    <!-- end row -->
-
-                    <form id="form2" runat="server" class="form-horizontal" role="form">
-
+                    <form id="regform" class="form">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-box">
-
                                     <div class="form-horizontal" role="form">
-
-                                        <div class="form-group row">
-                                            <label for="uname" class="col-3 col-form-label">*</label>
-                                            <div class="col-9"><span class="newStyle1">User Name</span>
-                                                <input type="text" id="uname" size="60" name="uname"
-                                                    class="form-control" width="100%">
-                                            </div>
+                                        <div class="form-field">
+                                            <label for="username">Username:</label>
+                                            <input type="text" name="username" id="username" autocomplete="off">
+                                            <small></small>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label for="mobile" class="col-3 col-form-label">*</label>
-                                            <div class="col-9"><span class="newStyle1">Telehone</span>
-                                                <input type="text" id="mobile" size="60" name="mobile"
-                                                    class="form-control" width="100%">
-                                            </div>
+                                        <div class="form-field">
+                                            <label for="ddrole">User role:</label>
+                                            <select id="ddrole" type="text" value="ddrole" name="ddrole"
+                                                autocomplete="off" class="form-control" width="100%">
+                                                <option selected value="">--select role--</option>
+                                                <option>Manager</option>
+                                                <option>Sales</option>
+                                                <option>Purchase</option>
+                                            </select>
+                                            <small></small>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label for="email" class="col-3 col-form-label">*</label>
-                                            <div class="col-9"><span class="newStyle1"></span>
-                                                <input type="email" class="form-control" name="email_18"
-                                                    id="amf-input-email_18" value="" placeholder="someone@example.com"
-                                                    maxlength="255" width="100%" onblur="checkEmail(this.value)">
-                                            </div>
+                                        <div class="form-field">
+                                            <label for="ddbranch">Branch:</label>
+                                            <select id="ddbranch" type="text" value="ddbranch" name="ddbranch"
+                                                autocomplete="off" class="form-control" width="100%">
+                                                <option selected value="">--select branch--</option>
+                                                <option>Manager</option>
+                                                <option>Sales</option>
+                                                <option>Purchase</option>
+                                            </select>
+                                            <small></small>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label for="ddrole" class="col-3 col-form-label">*</label>
-                                            <div class="col-9"><span class="newStyle1"></span>
-                                                <select id="ddrole" type="text" value="" name="role"
-                                                    class="form-control" width="100%">
-                                                    <option>Select Role</option>
-                                                    <option>Manager</option>
-                                                    <option>Sales</option>
-                                                    <option>Purchase</option>
-                                                </select>
-                                            </div>
+                                        <div class="form-field">
+                                            <label for="file">Upload Photo:</label> <h5 id="size" style="color: blue;"></h5>
+                                            <input type="file" id="file" onchange="return Filevalidation()"
+                                                class="form-control" />
+                                            <!-- Image preview -->
+                                            <div id="imagePreview"></div>
+                                            <small></small>
                                         </div>
-                                        <hr style="border: 2px solid green;">
+                                        <hr style="border: 5px solid green; border-radius: 5px;">
+
                                     </div>
                                 </div>
                             </div>
@@ -392,55 +367,57 @@
 
                             <div class="col-md-6">
                                 <div class="card-box">
-
-                                    <div class="form-group row">
-                                        <label for="pwd1" class="col-3 col-form-label">*</label>
-                                        <div class="col-9"><span class="newStyle1">Enter Password</span>
-                                            <input type="text" id="pwd1" size="60" name="pwd1" class="form-control"
-                                                width="100%">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="pwd2" class="col-3 col-form-label">*</label>
-                                        <div class="col-9"><span class="newStyle1">Confirm Password</span>
-                                            <input type="text" id="pwd2" size="60" name="pwd2" class="form-control"
-                                                width="100%">
-                                        </div>
+                                    <div class="form-field">
+                                        <label for="email">Email:</label>
+                                        <input type="text" name="email" id="email" autocomplete="off">
+                                        <small></small>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="myFile" class="col-3 col-form-label">*</label>
-                                        <div class="col-9"><span class="newStyle1">Upload Photo</span>
-                                            <input type="file" id="myFile" name="filename" class="form-control">
-                                        </div>
+                                    <div class="form-field">
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" id="password" autocomplete="off">
+                                        <small></small>
                                     </div>
 
-                                    <div class="form-group mb-0 justify-content-end row">
-                                        <div class="col-9">
-                                            <button type="submit" class="btn btn-info waves-effect waves-light"
-                                                style="width: 150px; height: 45px;">Save</button>
-                                        </div>
+
+                                    <div class="form-field">
+                                        <label for="confirm-password">Confirm Password:</label>
+                                        <input type="password" name="confirm-password" id="confirm-password"
+                                            autocomplete="off">
+                                        <small></small>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <input type="submit" value="Register"
+                                            class="btn btn-primary d-block w-100 mt-3">
+                                    </div>
+                                    <hr style="border: 5px solid green; border-radius: 5px;">
 
                                 </div>
                             </div>
                         </div>
-
+                    </form>
                 </div>
-                </form>
+
+                <div class="row">
+                    <!-- content removed -->
+                </div>
+                <!-- end row -->
 
             </div>
-            <!-- end container -->
-        </div>
-        <!-- end content -->
 
-        <footer class="footer">
-            &copy; 2022 - <span class="hide-phone">
-                <asp:Label ID="Labelyear" runat="server" style="color: #0033CC; font-style: italic; font-weight: 700">
-                </asp:Label> Karibu groceries - <a href="http://www.perpetualict.com" target="_blank">crafted by <img
-                        src="../images/footer_logo.png" height="20" width="20" /></a>
-            </span> | All Rights Reserved
-        </footer>
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end content -->
+
+    <footer class="footer">
+        &copy; 2022 - <span class="hide-phone">
+            <asp:Label ID="Labelyear" runat="server" style="color: #0033CC; font-style: italic; font-weight: 700">
+            </asp:Label> Karibu groceries - <a href="http://www.perpetualict.com" target="_blank">crafted by <img
+                    src="../images/footer_logo.png" height="20" width="20" /></a>
+        </span> | All Rights Reserved
+    </footer>
 
     </div>
     <!-- ============================================================== -->
@@ -583,11 +560,11 @@
     <script src="../assets/js/jquery.nicescroll.js"></script>
     <script src="../assets/js/jquery.scrollTo.min.js"></script>
     <script src="../plugins/switchery/switchery.min.js"></script>
-
-    <!-- Custom main Js -->
     <script src="../assets/js/jquery.core.js"></script>
-    <script src="../assets/js/jquery.app.js"></script>
 
+    <!-- Custom main Js --- this stopped my Javascript validation and it too me more than two days to detect, i figured it out 0n 28th, July, 2022 07:11 am-->
+    <!-- <script src="../assets/js/jquery.app.js"></script>  -->
+    <script src="../assets/js/jquery.app.js"></script>
     <script>
         var resizefunc = [];
     </script>
@@ -599,23 +576,61 @@
     <!-- End Important for searhable dropdwn-->
 
     <script src="../assets/js/modernizr.min.js"></script>
-    <script type="text/javascript">
-        //phone no validation
-        function functionx(evt) {
-            if (evt.charCode > 31 && (evt.charCode < 48 || evt.charCode > 57)) {
-                alert("Only numbers are allowed");
-                return false;
+    <script src="../register/js/app.js"></script>
+    <!-- Validate image -->
+
+    <script>
+        Filevalidation = () => {
+            const fi = document.getElementById('file');
+            var fileInput =
+                document.getElementById('file');
+
+            var filePath = fileInput.value;
+
+            // Allowing file type
+            var allowedExtensions =
+                /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+            // Check if any file is selected.
+            if (fi.files.length > 0) {
+                for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                    const fsize = fi.files.item(i).size;
+                    const file = Math.round((fsize / 1024));
+                    //check allowed file type
+                    if (!allowedExtensions.exec(filePath)) {
+                        alert('Invalid file type, allowed image file formats are JPG, JPEG, PNG and GIF');
+                        fileInput.value = '';
+                        return false;
+                    }
+                    // The size of the file.
+                    else if (file >= 4096) {
+                        alert(
+                            "File too big, please select a file less than 4mb");
+                    } 
+                    // else if (file < 2048) {
+                    //     alert(
+                    //         "File too small, please select a file greater than 2mb");
+                    // }
+                    else {
+                        // Image preview
+                        if (fileInput.files && fileInput.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                document.getElementById(
+                                    'imagePreview').innerHTML =
+                                    '<img src="' + e.target.result
+                                    + '"/>';
+                            };
+
+                            reader.readAsDataURL(fileInput.files[0]);
+                            document.getElementById('size').innerHTML = '<b>'
+                               + "File Size: " + file + '</b> KB';
+                        }
+                    }
+                }
             }
         }
-
-        //email validation
-        function checkEmail(str) {
-            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!re.test(str))
-                alert("Please enter a valid email address");
-        }
     </script>
-
 </body>
 
 </html>
