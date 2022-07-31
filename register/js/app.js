@@ -248,3 +248,55 @@ form.addEventListener('input', debounce(function (e) {
             break;
     }
 }));
+
+// valiate image upload
+Filevalidation = () => {
+    const fi = document.getElementById('file');
+    var fileInput =
+        document.getElementById('file');
+
+    var filePath = fileInput.value;
+
+    // Allowing file type
+    var allowedExtensions =
+        /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    // Check if any file is selected.
+    if (fi.files.length > 0) {
+        for (const i = 0; i <= fi.files.length - 1; i++) {
+
+            const fsize = fi.files.item(i).size;
+            const file = Math.round((fsize / 1024));
+            //check allowed file type
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type, allowed image file formats are JPG, JPEG, PNG and GIF');
+                fileInput.value = '';
+                return false;
+            }
+            // The size of the file.
+            else if (file >= 4096) {
+                alert(
+                    "File too big, please select a file less than 4mb");
+            }
+            // else if (file < 2048) {
+            //     alert(
+            //         "File too small, please select a file greater than 2mb");
+            // }
+            else {
+                // Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById(
+                            'imagePreview').innerHTML =
+                            '<img src="' + e.target.result
+                            + '"/>';
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                    document.getElementById('size').innerHTML = '<b>'
+                        + "File Size: " + file + '</b> KB';
+                }
+            }
+        }
+    }
+}
