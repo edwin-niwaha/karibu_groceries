@@ -14,7 +14,7 @@
     <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="../Style/chosen.css" rel="stylesheet" /><!-- Important for searhable dropdwn-->
-    <link href="../users/css/style.css" rel="stylesheet" />
+    <link href="../suppliers/css/style.css" rel="stylesheet" />
     
     <!--load fontawesome cdn-->
     <link rel="stylesheet"
@@ -161,9 +161,9 @@
                                         </a></li>
 
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./add.html">Add User</a></li>
+                                    <li class="breadcrumb-item"><a href="./add.html">Add suppliers</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./ulist.html">List of Users</a></li>
+                                    <li class="breadcrumb-item"><a href="./ulist.html">List of suppliers</a></li>
 
                                 </ol>
                                 <div class="clearfix"></div>
@@ -175,46 +175,36 @@
                             <div class="col-md-6">
                                 <div class="card-box">
                                     <div class="form-horizontal" role="form">
+
                                         <div class="form-field">
-                                            <label for="username">Username:</label>
+                                            <label for="ddcat">Supplier Category:</label>
+                                            <select id="ddcat" type="text" value="ddcat" name="ddcat"
+                                                autocomplete="off" class="form-control" width="100%">
+                                                <option selected value="">--select category--</option>
+                                                <option value="ind">Individual</option>
+                                                <option value="company">Company</option>
+                                                <option value="frms">Farms</option>
+                                            </select>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="form-field">
+                                            <label for="username">Supplier Name:</label>
                                             <input type="text" name="username" id="username" autocomplete="off">
                                             <small></small>
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="ddrole">User role:</label>
-                                            <select id="ddrole" type="text" value="ddrole" name="ddrole"
-                                                autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select role--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
-                                            </select>
+                                            <label for="contatc">Contact Person:</label>
+                                            <input type="text" name="username" id="username" autocomplete="off">
                                             <small></small>
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="ddbranch">Branch:</label>
-                                            <select id="ddbranch" type="text" value="ddbranch" name="ddbranch"
-                                                autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select branch--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
-                                            </select>
+                                            <label for="mobile">Mobile:</label>
+                                            <input type="text" name="mobile" id="mobile" autocomplete="off">
                                             <small></small>
                                         </div>
-
-                                        <div class="form-field">
-                                            <label for="file">Upload Photo:</label>
-                                            <h5 id="size" style="color: blue;"></h5>
-                                            <input type="file" id="file" onchange="return Filevalidation()"
-                                                class="form-control" />
-                                            <!-- Image preview -->
-                                            <div id="imagePreview"></div>
-                                            <small></small>
-                                        </div>
-                                        <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
 
                                     </div>
                                 </div>
@@ -223,32 +213,30 @@
 
                             <div class="col-md-6">
                                 <div class="card-box">
-                                    <div class="form-field">
+
+                                 <div class="form-field">
                                         <label for="email">Email:</label>
                                         <input type="text" name="email" id="email" autocomplete="off">
                                         <small></small>
                                     </div>
 
                                     <div class="form-field">
-                                        <label for="password">Password:</label>
-                                        <input type="password" name="password" id="password" autocomplete="off">
+                                        <label for="taxn">TAX Number:</label>
+                                        <input type="text" name="taxn" id="taxn" autocomplete="off" onkeypress="return functionx(event);">
                                         <small></small>
                                     </div>
-
 
                                     <div class="form-field">
-                                        <label for="confirm-password">Confirm Password:</label>
-                                        <input type="password" name="confirm-password" id="confirm-password"
-                                            autocomplete="off">
-                                        <small></small>
-                                    </div>
-
-                                    <div class="mb-3">
-                                            <input type="submit" value="Register" class="btn-primary"
-                                            style="width: 50%; height: 40px; border-radius: 5px;">
+                                        <label for="my-input"></Address></label>
+                                        <textarea placeholder="Enter suppplier address here.. (limited to 200 characters)"
+                                        rows="2" class="form-control" name="my-name" id="my-input" maxlength="200"
+                                        required></textarea>                                       
+                                         <small></small>
                                     </div>
                                     <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
-
+                                    <div class="mb-3">
+                                        <input type="submit" value="Save" class="btn btn-primary d-block w-100 mt-3">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +288,26 @@
     <!-- End Important for searhable dropdwn-->
     
 <!-- validate form -->
-    <script src="../users/js/app.js"></script>
+    <script src="../suppliers/js/app.js"></script>
+    <script>
+        $(document).ready(function () {
+            var len = 0;
+            var maxchar = 200;
+
+            $('#my-input').keyup(function () {
+                len = this.value.length
+                if (len > maxchar) {
+                    return false;
+                }
+                else if (len > 0) {
+                    $("#remainingC").html("Remaining characters: " + (maxchar - len));
+                }
+                else {
+                    $("#remainingC").html("Remaining characters: " + (maxchar));
+                }
+            })
+        });
+    </script>
 </body>
 
 </html>

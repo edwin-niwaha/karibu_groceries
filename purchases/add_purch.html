@@ -14,8 +14,8 @@
     <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="../Style/chosen.css" rel="stylesheet" /><!-- Important for searhable dropdwn-->
-    <link href="../users/css/style.css" rel="stylesheet" />
-    
+    <link href="../suppliers/css/style.css" rel="stylesheet" />
+
     <!--load fontawesome cdn-->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
@@ -47,7 +47,8 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="../dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
+                    <a href="../dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu
+                            groceries</span></a>
                 </div>
             </div>
 
@@ -151,20 +152,18 @@
                             <div class="page-title-box">
                                 <h4 class="page-title">Welcome
                                     &nbsp;|&nbsp;
-                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Edwin
+                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Manager
                                     </asp:Label>
                                 </h4>
                                 <ol class="breadcrumb float-right">
-                                    <li class="breadcrumb-item"><a href="./import.html">Import</a></li>
+                                    Receiving Branch:&nbsp;&nbsp;
+                                    <input type="text" name="recbranch" id="recbranch" autocomplete="off" disabled
+                                        style="width: auto; border-radius: 5px; border-width: 0ex;color: red; font-family: initial;">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <li class="breadcrumb-item"><a href="./add_purch.html">Purchases</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./amend.html">Amend
-                                        </a></li>
-
+                                    <li class="breadcrumb-item"><a href="./purch_list.html">Purchase List</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./add.html">Add User</a></li>
-                                    &nbsp;
-                                    <li class="breadcrumb-item"><a href="./ulist.html">List of Users</a></li>
-
                                 </ol>
                                 <div class="clearfix"></div>
                             </div>
@@ -176,45 +175,52 @@
                                 <div class="card-box">
                                     <div class="form-horizontal" role="form">
                                         <div class="form-field">
-                                            <label for="username">Username:</label>
-                                            <input type="text" name="username" id="username" autocomplete="off">
-                                            <small></small>
-                                        </div>
-
-                                        <div class="form-field">
-                                            <label for="ddrole">User role:</label>
-                                            <select id="ddrole" type="text" value="ddrole" name="ddrole"
-                                                autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select role--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
+                                            <label for="prodname">Name of produce:
+                                                <span class="input-group-addon pointer" data-toggle="modal"
+                                                    data-target="#exampleModal" title="Add Item?"><i
+                                                        class="fa fa-plus-square-o text-primary fa-lg"></i></span>
+                                            </label>
+                                            <select id="prodname" value="prodname" name="prodname" class="chzn-select"
+                                                style="width:100%">
+                                                <option value="" selected>--search produce--</option>
+                                                <option value="bns">Beans</option>
+                                                <option value="mz">Grain Maize</option>
+                                                <option value="peas">Cow peas</option>
+                                                <option value="nuts">G-nuts</option>
+                                                <option value="soy">Soybeans</option>
                                             </select>
                                             <small></small>
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="ddbranch">Branch:</label>
-                                            <select id="ddbranch" type="text" value="ddbranch" name="ddbranch"
+                                            <label for="ddprodtype">Type of produce:</label>
+                                            <select id="ddprodtype" type="text" value="ddprodtype" name="ddprodtype"
                                                 autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select branch--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
+                                                <option selected value="">--select produce type--</option>
+                                                <option value="ind">Sorted</option>
+                                                <option value="company">Assorted</option>
                                             </select>
                                             <small></small>
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="file">Upload Photo:</label>
-                                            <h5 id="size" style="color: blue;"></h5>
-                                            <input type="file" id="file" onchange="return Filevalidation()"
-                                                class="form-control" />
-                                            <!-- Image preview -->
-                                            <div id="imagePreview"></div>
+                                            <label for="datetime">Date:</label>
+                                            <input type="datetime-local" name="datetime" id="datetime"
+                                                autocomplete="off">
                                             <small></small>
                                         </div>
-                                        <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
+
+                                        <div class="form-field">
+                                            <label for="tonn">Tonnage(kgs):</label>
+                                            <input type="text" name="tonn" id="tonn" autocomplete="off"onkeypress="return functionx(event);">
+                                            <small></small>
+                                        </div>
+                                        <div class="form-field">
+                                            <label for="tonn">Cost Price(UgX):</label>
+                                            <input type="text" name="tonn" id="tonn" autocomplete="off"
+                                                onkeypress="return functionx(event);">
+                                            <small></small>
+                                        </div>
 
                                     </div>
                                 </div>
@@ -224,34 +230,74 @@
                             <div class="col-md-6">
                                 <div class="card-box">
                                     <div class="form-field">
-                                        <label for="email">Email:</label>
-                                        <input type="text" name="email" id="email" autocomplete="off">
+                                        <label for="tonn">Dealer's Name:</label>
+                                        <input type="text" name="tonn" id="tonn" autocomplete="off">
                                         <small></small>
                                     </div>
 
                                     <div class="form-field">
-                                        <label for="password">Password:</label>
-                                        <input type="password" name="password" id="password" autocomplete="off">
+                                        <label for="tel">Telephone Contact:</label>
+                                        <input type="text" name="tel" id="tel" autocomplete="off"
+                                            onkeypress="return functionx(event);">
                                         <small></small>
                                     </div>
-
 
                                     <div class="form-field">
-                                        <label for="confirm-password">Confirm Password:</label>
-                                        <input type="password" name="confirm-password" id="confirm-password"
-                                            autocomplete="off">
+                                        <label for="tonn">Selling Price(UgX):</label>
+                                        <input type="text" name="tonn" id="tonn" autocomplete="off"
+                                            onkeypress="return functionx(event);">
                                         <small></small>
                                     </div>
-
+                                    <hr>
                                     <div class="mb-3">
-                                            <input type="submit" value="Register" class="btn-primary"
-                                            style="width: 50%; height: 40px; border-radius: 5px;">
-                                    </div>
-                                    <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
+                                        <input type="submit" value="Save" class="btn-primary"
+                                        style="width: 50%; height: 40px; border-radius: 5px;">
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                         <!-- start Modal-items -->
+                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">Register Items</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <!-- start reg form -->
+                                     <form id="frm-items" class="form">
+                                         <div class="form-field">
+                                             <label for="iCode">Item Code:</label>
+                                             <input type="text" name="iCode" id="iCode" autocomplete="off" required>
+                                             <small></small>
+                                         </div>
+
+                                         <div class="form-field">
+                                             <label for="iname">Item Name:</label>
+                                             <input type="text" name="iname" id="iname" autocomplete="off" required>
+                                             <small></small>
+                                         </div>
+
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn-secondary" data-dismiss="modal"
+                                                 style="width: 50%; height: 40px; border-radius: 5px;">Close</button>
+                                             <input type="submit" value="Save changes" class="btn-primary"
+                                                 style="width: 50%; height: 40px; border-radius: 5px;">
+                                         </div>
+                                     </form>
+                                     <!-- end reg form -->
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!-- end of modal -->
+
                     </form>
                 </div>
 
@@ -298,9 +344,9 @@
     <script
         type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
     <!-- End Important for searhable dropdwn-->
-    
-<!-- validate form -->
-    <script src="../users/js/app.js"></script>
+    <!-- for validation -->
+    <script src="../purchases/js/app.js"></script>
+
 </body>
 
 </html>

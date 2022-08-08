@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <title>Karibu Groceries | Add</title>
+    <title>Karibu Groceries | Sales List</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
@@ -13,9 +13,8 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/icons.css" rel="stylesheet" type="text/css">
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
-    <link href="../Style/chosen.css" rel="stylesheet" /><!-- Important for searhable dropdwn-->
-    <link href="../users/css/style.css" rel="stylesheet" />
-    
+    <link rel="stylesheet" href="../Style/chosen.css" /><!-- Important for searhable dropdwn-->
+    <link rel="stylesheet" href="../users/css/style.css">
     <!--load fontawesome cdn-->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
@@ -35,6 +34,16 @@
             $("#footer").load("../footer.html");
         });
     </script>
+    <style>
+        .deleteRow {
+            border-radius: 1px;
+            color: red;
+            background-color: red;
+            height: 10px;
+            width: 30px;
+            border-color: white;
+        }
+    </style>
 </head>
 
 <body class="fixed-left">
@@ -47,7 +56,7 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="../dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
+                    <a href="./add.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
                 </div>
             </div>
 
@@ -151,20 +160,21 @@
                             <div class="page-title-box">
                                 <h4 class="page-title">Welcome
                                     &nbsp;|&nbsp;
-                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Edwin
+                                    <asp:Label ID="lblmsg" runat="server" Text="Label" style="font-size: small">Sales
+                                        agent
                                     </asp:Label>
                                 </h4>
                                 <ol class="breadcrumb float-right">
-                                    <li class="breadcrumb-item"><a href="./import.html">Import</a></li>
+                                    Branch:&nbsp;&nbsp;
+                                    <input type="text" name="recbranch" id="recbranch" disabled
+                                        style="width: auto; border-radius: 5px; border-width: 0px;color: red; font-family: initial;">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <li class="breadcrumb-item"><a href="./add_sales.html">Sales</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./amend.html">Amend
-                                        </a></li>
-
+                                    <li class="breadcrumb-item"><a href="./sales_list.html">Sales List</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./add.html">Add User</a></li>
+                                    <li class="breadcrumb-item"><a href="./credit_sales.html">Credit Sales</a></li>
                                     &nbsp;
-                                    <li class="breadcrumb-item"><a href="./ulist.html">List of Users</a></li>
-
                                 </ol>
                                 <div class="clearfix"></div>
                             </div>
@@ -172,83 +182,60 @@
                     </div>
                     <form id="regform" class="form">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="card-box">
-                                    <div class="form-horizontal" role="form">
-                                        <div class="form-field">
-                                            <label for="username">Username:</label>
-                                            <input type="text" name="username" id="username" autocomplete="off">
-                                            <small></small>
-                                        </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="checkDataTable">
+                                            <thead>
+                                                <tr style="background-color: black; color: white;">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Item Name</th>
+                                                    <th scope="col">Quantity(kgs)</th>
+                                                    <th scope="col">Unit Price(UgX)</th>
+                                                    <th scope="col">Discount(UgX</th>
+                                                    <th scope="col">Total Amount(UgX)</th>
+                                                    <th scope="col" data-field="Tools" data-formatter="StatuFormatter">
+                                                        Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Beans</td>
+                                                    <td>10</td>
+                                                    <td>2000</td>
+                                                    <td>10%</td>
+                                                    <td>20000</td>
+                                                    <td><button type="button" class="deleteRow" title="Delete Item?">
 
-                                        <div class="form-field">
-                                            <label for="ddrole">User role:</label>
-                                            <select id="ddrole" type="text" value="ddrole" name="ddrole"
-                                                autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select role--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
-                                            </select>
-                                            <small></small>
-                                        </div>
+                                                        </button></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Beans</td>
+                                                    <td>10</td>
+                                                    <td>2000</td>
+                                                    <td>10%</td>
+                                                    <td>20000</td>
+                                                    <td><button type="button" class="deleteRow" title="Delete Item?">
 
-                                        <div class="form-field">
-                                            <label for="ddbranch">Branch:</label>
-                                            <select id="ddbranch" type="text" value="ddbranch" name="ddbranch"
-                                                autocomplete="off" class="form-control" width="100%">
-                                                <option selected value="">--select branch--</option>
-                                                <option>Manager</option>
-                                                <option>Sales</option>
-                                                <option>Purchase</option>
-                                            </select>
-                                            <small></small>
-                                        </div>
+                                                        </button></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>Beans</td>
+                                                    <td>10</td>
+                                                    <td>2000</td>
+                                                    <td>10%</td>
+                                                    <td>20000</td>
+                                                    <td><button type="button" class="deleteRow" title="Delete Item?">
 
-                                        <div class="form-field">
-                                            <label for="file">Upload Photo:</label>
-                                            <h5 id="size" style="color: blue;"></h5>
-                                            <input type="file" id="file" onchange="return Filevalidation()"
-                                                class="form-control" />
-                                            <!-- Image preview -->
-                                            <div id="imagePreview"></div>
-                                            <small></small>
-                                        </div>
-                                        <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
+                                                        </button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
                                     </div>
-                                </div>
-                            </div>
-                            <!-- end col -->
-
-                            <div class="col-md-6">
-                                <div class="card-box">
-                                    <div class="form-field">
-                                        <label for="email">Email:</label>
-                                        <input type="text" name="email" id="email" autocomplete="off">
-                                        <small></small>
-                                    </div>
-
-                                    <div class="form-field">
-                                        <label for="password">Password:</label>
-                                        <input type="password" name="password" id="password" autocomplete="off">
-                                        <small></small>
-                                    </div>
-
-
-                                    <div class="form-field">
-                                        <label for="confirm-password">Confirm Password:</label>
-                                        <input type="password" name="confirm-password" id="confirm-password"
-                                            autocomplete="off">
-                                        <small></small>
-                                    </div>
-
-                                    <div class="mb-3">
-                                            <input type="submit" value="Register" class="btn-primary"
-                                            style="width: 50%; height: 40px; border-radius: 5px;">
-                                    </div>
-                                    <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
-
                                 </div>
                             </div>
                         </div>
@@ -298,9 +285,16 @@
     <script
         type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
     <!-- End Important for searhable dropdwn-->
-    
-<!-- validate form -->
+
+    <!-- validate form -->
     <script src="../users/js/app.js"></script>
+
+    <!-- delete row from table -->
+    <script>
+        $(document).on('click', 'button.deleteRow', function (event) {
+            $(this).closest("tr").remove();
+        });
+    </script>
 </body>
 
 </html>
