@@ -204,21 +204,37 @@
                                             </select>
                                             <small></small>
                                         </div>
-                                        <div class="form-field">
-                                            <label for="tonn">Tonnage(kgs):</label>
-                                            <input type="text" name="tonn" id="tonn" autocomplete="off">
-                                            <small></small>
+                                        <div>
+                                            <table class="table-responsive">
+                                                <th><label for="tonn">Tonnage(kgs):</label></th>
+                                                <th><label for="unitprice">Price per Kg:</label></th>
+                                                <tr>
+                                                    <td class="form-field">
+                                                        <input type="text" name="tonn" class="form-group" id="tonn" value="0" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();" maxlength="9"
+                                                            autocomplete="off" style="width: 100%;"
+                                                            onkeypress="return functionx(event);">
+                                                        <small></small>
+                                                    </td>
+                                                    <td class="form-field">
+                                                        <input type="text" name="unitprice" id="unitprice" value="0" maxlength="9" class="form-group"
+                                                            autocomplete="off" style="width: 100%;"
+                                                            onkeypress="return functionx(event);" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();">
+                                                        <small></small>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <div class="form-field">
-                                            <label for="amtpd">Amount Paid(UgX):</label>
+                                            <label for="amtpd">Total Amount Paid(UgX):</label>
                                             <input type="text" name="amtpd" id="amtpd" autocomplete="off" maxlength="9"
                                                 onkeypress="return functionx(event);">
                                             <small></small>
                                         </div>
                                         <div class="form-field">
-                                            <label for="ddbuyer">Name of the buyer:                                               
+                                            <label for="ddbuyer">Name of the buyer:
                                             </label>
-                                            <input type="text" name="ddbuyer" id="ddbuyer" autocomplete="off" onkeypress="return Validate(event);">
+                                            <input type="text" name="ddbuyer" id="ddbuyer" autocomplete="off"
+                                                onkeypress="return Validate(event);">
                                             <small id="lblError" style="color: red"></small>
                                             <small></small>
                                         </div>
@@ -232,11 +248,12 @@
                                     <div class="form-field">
                                         <label for="salesagent">Sales Agent:
                                             <span class="input-group-addon pointer" data-toggle="modal"
-                                                    data-target="#customer-modal" title="Add Sales Agent?"><i
-                                                        class="fa fa-user-plus text-primary fa-lg"></i></span>
+                                                data-target="#customer-modal" title="Add Sales Agent?"><i
+                                                    class="fa fa-user-plus text-primary fa-lg"></i></span>
                                         </label>
                                         <input type="text" name="salesagent" id="salesagent" autocomplete="off"
-                                            style="height: 35px;" disabled>
+                                            onkeypress="return ValidateSales(event);">
+                                        <small id="lblError1" style="color: red"></small>
                                         <small></small>
                                     </div>
                                     <div class="form-field">
@@ -253,7 +270,7 @@
                                     <div class="mb-3">
                                         <input type="submit" value="Save" class="btn-primary"
                                             style="width: 50%; height: 40px; border-radius: 5px;">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -364,7 +381,7 @@
                                                 Action</th>
                                         </tr>
                                     </thead>
-                                    
+
                                 </table>
                             </div>
                         </div>

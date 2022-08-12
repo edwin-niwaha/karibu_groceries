@@ -1,7 +1,9 @@
 const prodnameEl = document.querySelector('#prodname');
 const tonnEl = document.querySelector('#tonn');
 const amtpdEL = document.querySelector('#amtpd');
+const unitpriceEL = document.querySelector('#unitprice');
 const ddbuyerEL = document.querySelector('#ddbuyer');
+const salesEL = document.querySelector('#salesagent');
 const sdateEL = document.querySelector('#sdate');
 const refnoEL = document.querySelector('#refno');
 const letters = /^[A-Za-z]+$/;
@@ -36,6 +38,10 @@ const checkTonnage = () => {
     if (!isRequired(tonn)) {
         showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
     }
+    else if (tonn.length < 3) {
+        showError(tonnEl, '⛔️ Lengthen this to 3 characters or more.');
+        return false;
+    }
     else {
         showSuccess(tonnEl);
         valid = true;
@@ -66,6 +72,26 @@ const checkAmount = () => {
     return valid;
 };
 
+const checkUnitPrice = () => {
+
+    let valid = false;
+
+    const unitprice = unitpriceEL.value.trim();
+
+    if (!isRequired(unitprice)) {
+        showError(unitpriceEL, '⛔️ Unit price field cannot be empty.');
+        return false;
+    }
+    else if (unitprice.length < 3) {
+        showError(unitpriceEL, '⛔️ Lengthen this to 3 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(unitpriceEL);
+        valid = true;
+    }
+    return valid;
+};
 
 const checkBuyer = () => {
 
@@ -80,7 +106,6 @@ const checkBuyer = () => {
     }
     else if (ddbuyer.length < 2) {
         showError(ddbuyerEL, '⛔️ Lengthen this to 2 characters or more.');
-
         return false;
     }
     else {
@@ -102,7 +127,45 @@ function Validate(e) {
     //Validate TextBox value against the Regex.
     var isValid = regex.test(String.fromCharCode(keyCode));
     if (!isValid) {
-        lblError.innerHTML = "Only Alphabets and Numbers allowed.";
+        lblError.innerHTML = "Only alphabets and numbers allowed.";
+    }
+
+    return isValid;
+}
+
+const checkSalesAgent = () => {
+    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    let valid = false;
+
+    const salesagent = salesEL.value.trim();
+
+    if (!isRequired(salesagent)) {
+        showError(salesEL, '⛔️ Please enter the Sales Agent name!');
+        return false;
+    }
+    else if (salesagent.length < 2) {
+        showError(salesEL, '⛔️ Lengthen this to 2 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(salesEL);
+        valid = true;
+    }
+    return valid;
+};
+//valide alphanumeric
+function ValidateSales(e) {
+    var keyCode = e.keyCode || e.which;
+    var lblError1 = document.getElementById("lblError1");
+    lblError1.innerHTML = "";
+
+    //Regex for Valid Characters i.e. Alphabets and Numbers.
+    var regex = /^[A-Za-z0-9]+$/;
+
+    //Validate TextBox value against the Regex.
+    var isValid = regex.test(String.fromCharCode(keyCode));
+    if (!isValid) {
+        lblError1.innerHTML = "Only alphabets and numbers allowed.";
     }
 
     return isValid;
@@ -177,19 +240,23 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // validate fields
-    let isUsernameValid = checkProdName(),
-        isProdValid = checkProdName(),
+    let isProdValid = checkProdName(),
+        //isProdValid = checkProdName(),
         isTonnValid = checkTonnage(),
         isAmountValid = checkAmount(),
+        isUnitPriceValid = checkUnitPrice(),
         isValidBuyer = checkBuyer(),
+        isValidSales = checkSalesAgent(),
         isValidDate = checkDate(),
         isValidRefno = checkRef();
 
-    let isFormValid = isUsernameValid &&
+    let isFormValid = isProdValid &&
         isProdValid &&
         isTonnValid &&
         isAmountValid &&
+        isUnitPriceValid &&
         isValidBuyer &&
+        isValidSales &&
         isValidDate &&
         isValidRefno;
 
@@ -197,7 +264,8 @@ form.addEventListener('submit', function (e) {
     if (isFormValid) {
         alert('✅ Transaction recorded successfully');
         // Redirecting to other page or webste code. 
-        window.location = "https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/";
+       window.location = "https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/";
+    //window.location.replace("/add_sales.html");
     }
 });
 
@@ -227,8 +295,14 @@ form.addEventListener('input', debounce(function (e) {
         case 'amtpd':
             checkAmount();
             break;
+        case 'unitprice':
+            checkUnitPrice();
+            break;
         case 'ddbuyer':
             checkBuyer();
+            break;
+        case 'salesagent':
+            checkSalesAgent();
             break;
         case 'sdate':
             checkDate();
@@ -246,3 +320,34 @@ function functionx(evt) {
         return false;
     }
 }
+
+// setting commas
+
+function Comma(Num) {      //function to insert comma for two textboxes
+    Num += '';
+    Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+    Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+    x = Num.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1))
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    return x1 + x2;
+}
+
+// function to remove comma and then add to third textbo
+function sumCalc() {
+
+    var tonn = parseFloat(document.getElementById("tonn").value.replace(/,/g, ""));
+    var unitprice = parseFloat(document.getElementById("unitprice").value.replace(/,/g, ""));
+
+    x = (tonn * unitprice).toString().split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1))
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    document.getElementById("amtpd").value = x1 + x2;
+}
+
