@@ -1,14 +1,16 @@
 const prodnameEl = document.querySelector('#prodname');
-const tonnEl = document.querySelector('#tonn');
-const amtpdEL = document.querySelector('#amtpd');
-const unitpriceEL = document.querySelector('#unitprice');
-const ddbuyerEL = document.querySelector('#ddbuyer');
-const salesEL = document.querySelector('#salesagent');
+const ddprodtypeEL = document.querySelector('#ddprodtype');
 const sdateEL = document.querySelector('#sdate');
-const refnoEL = document.querySelector('#refno');
+const tonnEl = document.querySelector('#tonn');
+const costpriceEL = document.querySelector('#costprice');
+const unitpriceEL = document.querySelector('#unitprice');
+const dealerEL = document.querySelector('#dealer');
+const contacttelEL = document.querySelector('#contacttel');
+
+const sellpriceEL = document.querySelector('#sellprice');
 const letters = /^[A-Za-z]+$/;
 
-const form = document.querySelector('#salesfrm');
+const form = document.querySelector('#purchfrm');
 
 
 const checkProdName = () => {
@@ -28,45 +30,36 @@ const checkProdName = () => {
     }
     return valid;
 };
-
-const checkTonnage = () => {
+const CheckProdType = () => {
 
     let valid = false;
 
-    const tonn = tonnEl.value.trim();
+    const ddprodtype = ddprodtypeEL.value.trim();
 
-    if (!isRequired(tonn)) {
-        showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
-    }
-    else if (tonn.length < 3) {
-        showError(tonnEl, '⛔️ Lengthen this to 3 characters or more.');
+    if (!isRequired(ddprodtype)) {
+        // alert("Please select the user role!");
+        showError(ddprodtypeEL, '⛔️ Please select the produce type !');
         return false;
     }
     else {
-        showSuccess(tonnEl);
+        showSuccess(ddprodtypeEL);
         valid = true;
     }
     return valid;
 };
-
-
-const checkAmount = () => {
-    // var Textboxvalue = $("#amtpd").val();
+const checkDate = () => {
 
     let valid = false;
 
-    const amtpd = amtpdEL.value.trim();
+    const sdate = sdateEL.value.trim();
 
-    if (!isRequired(amtpd)) {
-        showError(amtpdEL, '⛔️ Amount field cannot be empty.');
-        return false;
-    }
-    else if (amtpd.length < 5) {
-        showError(amtpdEL, '⛔️ Lengthen this to 5 characters or more.');
+    if (!isRequired(sdate)) {
+        // alert("Please select the user role!");
+        showError(sdateEL, '⛔️ Please enter date !');
         return false;
     }
     else {
-        showSuccess(amtpdEL);
+        showSuccess(sdateEL);
         valid = true;
     }
     return valid;
@@ -92,31 +85,91 @@ const checkUnitPrice = () => {
     }
     return valid;
 };
-
-const checkBuyer = () => {
+const checkTonnage = () => {
 
     let valid = false;
 
-    const ddbuyer = ddbuyerEL.value.trim();
+    const tonn = tonnEl.value.trim();
 
-    if (!isRequired(ddbuyer)) {
-        // alert("Please select the user role!");
-        showError(ddbuyerEL, '⛔️ Please enter the buyer !');
-        return false;
+    if (!isRequired(tonn)) {
+        showError(tonnEl, '⛔️ Tonnage field cannot be empty.');
     }
-    else if (ddbuyer.length < 2) {
-        showError(ddbuyerEL, '⛔️ Lengthen this to 2 characters or more.');
+    else if (tonn.length < 3) {
+        showError(tonnEl, '⛔️ Lengthen this to 3 characters or more.');
         return false;
     }
     else {
-        showSuccess(ddbuyerEL);
+        showSuccess(tonnEl);
+        valid = true;
+    }
+    return valid;
+};
+const checkCostPrice = () => {
+
+    let valid = false;
+
+    const costprice = costpriceEL.value.trim();
+
+    if (!isRequired(costprice)) {
+        showError(costpriceEL, '⛔️ You must enter the cost price.');
+        return false;
+    }
+    else if (costprice.length < 5) {
+        showError(costpriceEL, '⛔️ Lengthen this to 5 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(costpriceEL);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkDealer = () => {
+
+    let valid = false;
+
+    const dealer = dealerEL.value.trim();
+
+    if (!isRequired(dealer)) {
+        // alert("Please select the user role!");
+        showError(dealerEL, '⛔️ Please enter the dealer !');
+        return false;
+    }
+    else if (dealer.length < 2) {
+        showError(dealerEL, '⛔️ Lengthen this to 2 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(dealerEL);
+        valid = true;
+    }
+    return valid;
+};
+
+const checkSellPrice = () => {
+
+    let valid = false;
+
+    const sellprice = sellpriceEL.value.trim();
+
+    if (!isRequired(sellprice)) {
+        showError(sellpriceEL, '⛔️ Selling price field cannot be empty.');
+        return false;
+    }
+    else if (sellprice.length < 3) {
+        showError(sellpriceEL, '⛔️ Lengthen this to 3 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(sellpriceEL);
         valid = true;
     }
     return valid;
 };
 
 //valide alphanumeric
-function Validate(e) {
+function Validatedealer(e) {
     var keyCode = e.keyCode || e.which;
     var lblError = document.getElementById("lblError");
     lblError.innerHTML = "";
@@ -133,81 +186,32 @@ function Validate(e) {
     return isValid;
 }
 
-const checkSalesAgent = () => {
-    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+const checkContact = () => {
     let valid = false;
+    const min = 9,
+        max = 14;
+    const contacttel = contacttelEL.value.trim();
 
-    const salesagent = salesEL.value.trim();
-
-    if (!isRequired(salesagent)) {
-        showError(salesEL, '⛔️ Please enter the Sales Agent name!');
-        return false;
-    }
-    else if (salesagent.length < 2) {
-        showError(salesEL, '⛔️ Lengthen this to 2 characters or more.');
-        return false;
-    }
-    else {
-        showSuccess(salesEL);
-        valid = true;
-    }
-    return valid;
-};
-//valide alphanumeric
-function ValidateSales(e) {
-    var keyCode = e.keyCode || e.which;
-    var lblError1 = document.getElementById("lblError1");
-    lblError1.innerHTML = "";
-
-    //Regex for Valid Characters i.e. Alphabets and Numbers.
-    var regex = /^[A-Za-z0-9]+$/;
-
-    //Validate TextBox value against the Regex.
-    var isValid = regex.test(String.fromCharCode(keyCode));
-    if (!isValid) {
-        lblError1.innerHTML = "Only alphabets and numbers allowed.";
-    }
-
-    return isValid;
-}
-
-const checkDate = () => {
-
-    let valid = false;
-
-    const sdate = sdateEL.value.trim();
-
-    if (!isRequired(sdate)) {
+    if (!isRequired(contacttel)) {
         // alert("Please select the user role!");
-        showError(sdateEL, '⛔️ Please enter date !');
+        showError(contacttelEL, '⛔️ Please enter the contact number !');
         return false;
     }
-    else {
-        showSuccess(sdateEL);
-        valid = true;
+
+    else if (!isBetween(contacttel.length, min, max)) {
+        showError(contacttelEL, `phone number must be between ${min} and ${max} digits.`)
     }
-    return valid;
-};
 
-const checkRef = () => {
-
-    let valid = false;
-
-    const refno = refnoEL.value.trim();
-
-    if (!isRequired(refno)) {
-        // alert("Please select the user role!");
-        showError(refnoEL, '⛔️ Please enter the reference no !');
-        return false;
-    }
     else {
-        showSuccess(refnoEL);
+        showSuccess(contacttelEL);
         valid = true;
     }
     return valid;
 };
 
 const isRequired = value => value === '' ? false : true;
+const isBetween = (length, min, max) => length < min || length > max ? false : true;
+
 
 const showError = (input, message) => {
     // get the form-field element
@@ -241,33 +245,32 @@ form.addEventListener('submit', function (e) {
 
     // validate fields
     let isProdValid = checkProdName(),
-        //isProdValid = checkProdName(),
-        isTonnValid = checkTonnage(),
-        isAmountValid = checkAmount(),
-        isUnitPriceValid = checkUnitPrice(),
-        isValidBuyer = checkBuyer(),
-        isValidSales = checkSalesAgent(),
+        isProduceTypeValid = CheckProdType(),
         isValidDate = checkDate(),
-        isValidRefno = checkRef();
+        isTonnValid = checkTonnage(),
+        isCostPriceValid = checkCostPrice(),
+        isUnitPriceValid = checkUnitPrice(),
+        isValidDealer = checkDealer(),
+        isValidContact = checkContact(),
+        isValidSellPrice = checkSellPrice();
 
     let isFormValid = isProdValid &&
-        isTonnValid &&
-        isAmountValid &&
-        isUnitPriceValid &&
-        isValidBuyer &&
-        isValidSales &&
+        isProduceTypeValid &&
         isValidDate &&
-        isValidRefno;
+        isTonnValid &&
+        isCostPriceValid &&
+        isUnitPriceValid &&
+        isValidDealer &&
+        isValidContact &&
+        isValidSellPrice;
 
     // submit to the server if the form is valid
     if (isFormValid) {
-        alert('✅ Transaction recorded successfully');
+        alert('Thank You for Registration & You are Redirecting to the landing page');
         // Redirecting to other page or webste code. 
-       window.location = "https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/";
-    //window.location.replace("/add_sales.html");
+        window.location = "https://www.javascripttutorial.net/javascript-dom/javascript-form-validation/";
     }
 });
-
 
 const debounce = (fn, delay = 500) => {
     let timeoutId;
@@ -288,27 +291,30 @@ form.addEventListener('input', debounce(function (e) {
         case 'prodname':
             checkProdName();
             break;
-        case 'tonn':
-            checkTonnage();
-            break;
-        case 'amtpd':
-            checkAmount();
-            break;
-        case 'unitprice':
-            checkUnitPrice();
-            break;
-        case 'ddbuyer':
-            checkBuyer();
-            break;
-        case 'salesagent':
-            checkSalesAgent();
+        case 'ddprodtype':
+            CheckProdType();
             break;
         case 'sdate':
             checkDate();
             break;
-        case 'refno':
-            checkRef();
+        case 'tonn':
+            checkTonnage();
             break;
+        case 'costprice':
+            checkCostPrice();
+            break;
+        case 'unitprice':
+            checkUnitPrice();
+            break;
+        case 'dealer':
+            checkDealer();
+            break;
+        case 'contacttel':
+            checkContact();
+            break; 
+            case 'sellprice':
+                checkSellPrice();
+                break;
     }
 }));
 
@@ -347,6 +353,5 @@ function sumCalc() {
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1))
         x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    document.getElementById("amtpd").value = x1 + x2;
+    document.getElementById("costprice").value = x1 + x2;
 }
-

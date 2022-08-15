@@ -208,15 +208,18 @@
                                         <div class="form-field">
                                             <label for="loc">Location:</label>
                                             <input type="text" name="loc" id="loc" autocomplete="off"
-                                                onkeypress="return Validateloc(event);">
+                                                onkeypress="return valididLocation(event);">
                                             <small id="lblError" style="color: red"></small>
                                             <small></small>
+                                            <small id="lblErrorlc" style="color: red"></small>
+
                                         </div>
 
 
                                         <div class="form-field">
                                             <label for="contacttel">Contact:</label>
-                                            <input type="text" name="contacttel" id="contacttel" autocomplete="off">
+                                            <input type="text" name="contacttel" id="contacttel" autocomplete="off"
+                                                maxlength="14" onkeypress="return functionx(event);">
                                             <small></small>
                                         </div>
                                         <div class="form-field">
@@ -278,9 +281,24 @@
                                         <small></small>
                                     </div>
                                     <div class="form-field">
-                                        <label for="datetime">Tonnage(kgs):</label>
-                                        <input type="text" name="tonn" id="tonn" autocomplete="off">
-                                        <small></small>
+                                        <table class="table-responsive">
+                                            <th><label for="tonn">Tonnage(kgs):</label></th>
+                                            <th><label for="unitprice">Price per Kg:</label></th>
+                                            <tr>
+                                                <td class="form-field">
+                                                    <input type="text" name="tonn" class="form-group" id="tonn" value="0" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();" maxlength="9"
+                                                        autocomplete="off" style="width: 100%;"
+                                                        onkeypress="return functionx(event);">
+                                                    <small></small>
+                                                </td>
+                                                <td class="form-field">
+                                                    <input type="text" name="unitprice" id="unitprice" value="0" maxlength="9" class="form-group"
+                                                        autocomplete="off" style="width: 100%;"
+                                                        onkeypress="return functionx(event);" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();">
+                                                    <small></small>
+                                                </td>
+                                            </tr>
+                                        </table>
                                     </div>
                                     <div>
                                         <table class="table-responsive">

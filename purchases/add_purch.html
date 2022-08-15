@@ -169,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                    <form id="regform" class="form">
+                    <form id="purchfrm" class="form">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-box">
@@ -204,21 +204,39 @@
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="datetime">Date:</label>
-                                            <input type="datetime-local" name="datetime" id="datetime"
-                                                autocomplete="off">
+                                            <label for="sdate">Date & time of produce:</label>
+                                            <input type="datetime-local" name="sdate" id="sdate" autocomplete="off">
                                             <small></small>
                                         </div>
 
                                         <div class="form-field">
-                                            <label for="tonn">Tonnage(kgs):</label>
-                                            <input type="text" name="tonn" id="tonn" autocomplete="off"onkeypress="return functionx(event);">
-                                            <small></small>
+                                            <table class="table-responsive">
+                                                <th><label for="tonn">Tonnage(kgs):</label></th>
+                                                <th><label for="unitprice">Price per Kg:</label></th>
+                                                <tr>
+                                                    <td class="form-field">
+                                                        <input type="text" name="tonn" class="form-group" id="tonn"
+                                                            value="0" onkeyup="javascript:this.value=Comma(this.value);"
+                                                            onchange="javascript:sumCalc();" maxlength="9"
+                                                            autocomplete="off" style="width: 100%;"
+                                                            onkeypress="return functionx(event);">
+                                                        <small></small>
+                                                    </td>
+                                                    <td class="form-field">
+                                                        <input type="text" name="unitprice" id="unitprice" value="0"
+                                                            maxlength="9" class="form-group" autocomplete="off"
+                                                            style="width: 100%;" onkeypress="return functionx(event);"
+                                                            onkeyup="javascript:this.value=Comma(this.value);"
+                                                            onchange="javascript:sumCalc();">
+                                                        <small></small>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                         <div class="form-field">
-                                            <label for="tonn">Cost Price(UgX):</label>
-                                            <input type="text" name="tonn" id="tonn" autocomplete="off"
-                                                onkeypress="return functionx(event);">
+                                            <label for="costprice">Cost Price(UgX):</label>
+                                            <input type="text" name="costprice" id="costprice" autocomplete="off"
+                                                maxlength="9" onkeypress="return functionx(event);">
                                             <small></small>
                                         </div>
 
@@ -230,75 +248,78 @@
                             <div class="col-md-6">
                                 <div class="card-box">
                                     <div class="form-field">
-                                        <label for="tonn">Dealer's Name:</label>
-                                        <input type="text" name="tonn" id="tonn" autocomplete="off">
+                                        <label for="dealer">Dealer's Name:</label>
+                                        <input type="text" name="dealer" id="dealer" autocomplete="off"
+                                            onkeypress="return Validatedealer(event);">
+                                        <small id="lblError" style="color: red"></small>
                                         <small></small>
                                     </div>
 
                                     <div class="form-field">
                                         <label for="tel">Telephone Contact:</label>
-                                        <input type="text" name="tel" id="tel" autocomplete="off"
-                                            onkeypress="return functionx(event);">
+                                        <input type="text" name="contacttel" id="contacttel" autocomplete="off"
+                                            maxlength="14" onkeypress="return functionx(event);">
                                         <small></small>
                                     </div>
 
                                     <div class="form-field">
-                                        <label for="tonn">Selling Price(UgX):</label>
-                                        <input type="text" name="tonn" id="tonn" autocomplete="off"
+                                        <label for="sellprice">Selling Price(UgX):</label>
+                                        <input type="text" name="sellprice" id="sellprice" autocomplete="off" maxlength="9"
+                                            onkeyup="javascript:this.value=Comma(this.value);"
                                             onkeypress="return functionx(event);">
                                         <small></small>
                                     </div>
                                     <hr>
                                     <div class="mb-3">
                                         <input type="submit" value="Save" class="btn-primary"
-                                        style="width: 50%; height: 40px; border-radius: 5px;">
+                                            style="width: 50%; height: 40px; border-radius: 5px;">
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                         <!-- start Modal-items -->
-                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                         <div class="modal-dialog" role="document">
-                             <div class="modal-content">
-                                 <div class="modal-header">
-                                     <h5 class="modal-title" id="exampleModalLabel">Register Items</h5>
-                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                         <span aria-hidden="true">&times;</span>
-                                     </button>
-                                 </div>
-                                 <div class="modal-body">
-                                     <!-- start reg form -->
-                                     <form id="frm-items" class="form">
-                                         <div class="form-field">
-                                             <label for="iCode">Item Code:</label>
-                                             <input type="text" name="iCode" id="iCode" autocomplete="off" required>
-                                             <small></small>
-                                         </div>
-
-                                         <div class="form-field">
-                                             <label for="iname">Item Name:</label>
-                                             <input type="text" name="iname" id="iname" autocomplete="off" required>
-                                             <small></small>
-                                         </div>
-
-                                         <div class="modal-footer">
-                                             <button type="button" class="btn-secondary" data-dismiss="modal"
-                                                 style="width: 50%; height: 40px; border-radius: 5px;">Close</button>
-                                             <input type="submit" value="Save changes" class="btn-primary"
-                                                 style="width: 50%; height: 40px; border-radius: 5px;">
-                                         </div>
-                                     </form>
-                                     <!-- end reg form -->
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     <!-- end of modal -->
-
                     </form>
+
+                    <!-- start Modal-items -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Register Items</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- start reg form -->
+                                    <form id="frm-items" class="form">
+                                        <div class="form-field">
+                                            <label for="iCode">Item Code:</label>
+                                            <input type="text" name="iCode" id="iCode" autocomplete="off" required>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="form-field">
+                                            <label for="iname">Item Name:</label>
+                                            <input type="text" name="iname" id="iname" autocomplete="off" required>
+                                            <small></small>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-secondary" data-dismiss="modal"
+                                                style="width: 50%; height: 40px; border-radius: 5px;">Close</button>
+                                            <input type="submit" value="Save changes" class="btn-primary"
+                                                style="width: 50%; height: 40px; border-radius: 5px;">
+                                        </div>
+                                    </form>
+                                    <!-- end reg form -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of modal -->
+
                 </div>
 
                 <div class="row">
@@ -345,7 +366,7 @@
         type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
     <!-- End Important for searhable dropdwn-->
     <!-- for validation -->
-    <script src="../purchases/js/app.js"></script>
+    <script src="../purchases/js/purch.js"></script>
 
 </body>
 

@@ -7,6 +7,7 @@ const salesEL = document.querySelector('#salesagent');
 const prodnameEl = document.querySelector('#prodname');
 const ddproduceEl = document.querySelector('#ddproduce');
 const tonnEl = document.querySelector('#tonn');
+const unitpriceEL = document.querySelector('#unitprice');
 const duedateEl = document.querySelector('#duedte');
 const dpatchdateEL = document.querySelector('#dpatchdate');
 
@@ -65,7 +66,6 @@ const checkNIN = () => {
     const first2 = nin.slice(0, 2);
 
     if (!isRequired(nin)) {
-        // alert("Please select the user role!");
         showError(ninEL, '⛔️ Please enter the NIN !');
         return false;
     }
@@ -75,14 +75,15 @@ const checkNIN = () => {
     }
     else if (nin.length != 14) {
         showError(ninEL, '⛔️ Invalid NIN format, enter upto 14 digits');
-        return false;  
+        return false;
     }
-        else if(first2 !="CF"){
+    else if (first2 != "CF") {
+        //console.log(first2);
         showError(ninEL, '⛔️ Valid NIN should start with CF or CM');
     }
-    else if(first2 !="CM"){
-        showError(ninEL, '⛔️ Valid NIN should start with CF or CM');
-    }
+    // else if (first2 != "CM") {
+    //     showError(ninEL, '⛔️ Valid NIN should start with CF or CM');
+    // }
     else {
         showSuccess(ninEL);
         valid = true;
@@ -128,11 +129,26 @@ const checkLocation = () => {
     }
     return valid;
 };
+function valididLocation(e) {
+    var keyCode = e.keyCode || e.which;
+    var lblErrorlc = document.getElementById("lblErrorlc");
+    lblErrorlc.innerHTML = "";
 
+    //Regex for Valid Characters i.e. Alphabets and Numbers.
+    var regex = /^[A-Za-z0-9]+$/;
+
+    //Validate TextBox value against the Regex.
+    var isValid = regex.test(String.fromCharCode(keyCode));
+    if (!isValid) {
+        lblErrorlc.innerHTML = "Oops! Special characters not allowed!";
+    }
+
+    return isValid;
+}
 const checkContact = () => {
-
     let valid = false;
-
+    const min = 9,
+    max = 14;
     const contacttel = contactEL.value.trim();
 
     if (!isRequired(contacttel)) {
@@ -140,10 +156,11 @@ const checkContact = () => {
         showError(contactEL, '⛔️ Please enter the contact number !');
         return false;
     }
-    else if (contacttel.length < 10) {
-        showError(contactEL, '⛔️ Please enter a valid phone number.');
-        return false;
+
+    else if (!isBetween(contacttel.length, min, max)) {
+        showError(contactEL, `phone number must be between ${min} and ${max} digits.`)
     }
+
     else {
         showSuccess(contactEL);
         valid = true;
@@ -250,6 +267,27 @@ const checkTonnage = () => {
     return valid;
 };
 
+const checkUnitPrice = () => {
+
+    let valid = false;
+
+    const unitprice = unitpriceEL.value.trim();
+
+    if (!isRequired(unitprice)) {
+        showError(unitpriceEL, '⛔️ Unit price field cannot be empty.');
+        return false;
+    }
+    else if (unitprice.length < 3) {
+        showError(unitpriceEL, '⛔️ Lengthen this to 3 characters or more.');
+        return false;
+    }
+    else {
+        showSuccess(unitpriceEL);
+        valid = true;
+    }
+    return valid;
+};
+
 const checkDate = () => {
 
     let valid = false;
@@ -285,6 +323,7 @@ const checkdpatchdate = () => {
     return valid;
 };
 
+const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
 const isRequired = value => value === '' ? false : true;
 
@@ -328,6 +367,7 @@ form.addEventListener('submit', function (e) {
         isProdValid = checkProdName(),
         isProdtype = checkddproduce(),
         isTonnValid = checkTonnage(),
+        isUnitPriceValid = checkUnitPrice(),
         isValidDate = checkDate(),
         isValiddpatchdate = checkdpatchdate();
 
@@ -340,6 +380,7 @@ form.addEventListener('submit', function (e) {
         isProdValid &&
         isProdtype &&
         isTonnValid &&
+        isUnitPriceValid &&
         isValidDate &&
         isValiddpatchdate;
 
@@ -395,6 +436,9 @@ form.addEventListener('input', debounce(function (e) {
             break;
         case 'tonn':
             checkTonnage();
+            break;
+            case 'unitprice':
+            checkUnitPrice();
             break;
         case 'duedte':
             checkDate();
