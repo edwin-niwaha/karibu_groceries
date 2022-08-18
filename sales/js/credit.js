@@ -11,12 +11,9 @@ const unitpriceEL = document.querySelector('#unitprice');
 const duedateEl = document.querySelector('#duedte');
 const dpatchdateEL = document.querySelector('#dpatchdate');
 
-
-
 const letters = /^[A-Za-z]+$/;
 
 const form = document.querySelector('#creditfrm');
-
 
 const checkBuyer = () => {
 
@@ -62,9 +59,12 @@ const checkNIN = () => {
     let valid = false;
 
     const nin = ninEL.value.trim();
-
     const first2 = nin.slice(0, 2);
-
+    // matches CM or CF
+    // const ninvalid = /^[C]M|[C]F/gm;
+    var validNin = /^(CM|CF)/;
+    //source -- https://stackoverflow.com/questions/14071178/validate-first-2-characters-of-a-textfield
+    
     if (!isRequired(nin)) {
         showError(ninEL, '⛔️ Please enter the NIN !');
         return false;
@@ -77,13 +77,9 @@ const checkNIN = () => {
         showError(ninEL, '⛔️ Invalid NIN format, enter upto 14 digits');
         return false;
     }
-    else if (first2 != "CF") {
-        //console.log(first2);
-        showError(ninEL, '⛔️ Valid NIN should start with CF or CM');
+    else if (!first2.match(validNin)) {
+        showError(ninEL, '⛔️ Valid NIN should start with 👉️ CF or CM');
     }
-    // else if (first2 != "CM") {
-    //     showError(ninEL, '⛔️ Valid NIN should start with CF or CM');
-    // }
     else {
         showSuccess(ninEL);
         valid = true;
@@ -148,7 +144,7 @@ function valididLocation(e) {
 const checkContact = () => {
     let valid = false;
     const min = 9,
-    max = 14;
+        max = 14;
     const contacttel = contactEL.value.trim();
 
     if (!isRequired(contacttel)) {
@@ -437,7 +433,7 @@ form.addEventListener('input', debounce(function (e) {
         case 'tonn':
             checkTonnage();
             break;
-            case 'unitprice':
+        case 'unitprice':
             checkUnitPrice();
             break;
         case 'duedte':

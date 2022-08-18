@@ -1,35 +1,28 @@
-const usernameEl = document.querySelector('#username');
+const pwdoldEL = document.querySelector('#pwdold');
 const emailEl = document.querySelector('#email');
 const passwordEl = document.querySelector('#password');
 const confirmPasswordEl = document.querySelector('#confirm-password');
 const letters = /^[A-Za-z]+$/;
 
-const form = document.querySelector('#signup');
+const form = document.querySelector('#resetfrm');
 
-
-const checkUsername = () => {
-
+const checkOldPwd = () => {
     let valid = false;
 
-    const min = 3,
-        max = 25;
 
-    const username = usernameEl.value.trim();
+    const pwdold = pwdoldEL.value.trim();
 
-    if (!isRequired(username)) {
-        showError(usernameEl, '⛔️ Username cannot be blank.');
-    } else if (!isBetween(username.length, min, max)) {
-        showError(usernameEl, `⛔️ Username must be between ${min} and ${max} characters.`)
-    } else if (!letters.test(username)) {
-        alert('Name field requires only alphabet characters');
-    }
-    else {
-        showSuccess(usernameEl);
+    if (!isRequired(pwdold)) {
+        showError(pwdoldEL, '⛔️ You must enter your old password.');
+    } else if (!isPasswordSecure1(pwdold)) {
+        showError(pwdoldEL, '⛔️ Password must has at least 8 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@#$%^&*)');
+    } else {
+        showSuccess(pwdoldEL);
         valid = true;
     }
+
     return valid;
 };
-
 
 const checkEmail = () => {
     let valid = false;
@@ -91,6 +84,11 @@ const isPasswordSecure = (password) => {
     return re.test(password);
 };
 
+const isPasswordSecure1 = (pwdold) => {
+    const re1 = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+    return re1.test(pwdold);
+};
+
 const isRequired = value => value === '' ? false : true;
 const isBetween = (length, min, max) => length < min || length > max ? false : true;
 
@@ -126,12 +124,12 @@ form.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // validate fields
-    let isUsernameValid = checkUsername(),
+    let ispwdold = checkOldPwd(),
         isEmailValid = checkEmail(),
         isPasswordValid = checkPassword(),
         isConfirmPasswordValid = checkConfirmPassword();
 
-    let isFormValid = isUsernameValid &&
+    let isFormValid = ispwdold &&
         isEmailValid &&
         isPasswordValid &&
         isConfirmPasswordValid;
@@ -161,8 +159,8 @@ const debounce = (fn, delay = 500) => {
 
 form.addEventListener('input', debounce(function (e) {
     switch (e.target.id) {
-        case 'username':
-            checkUsername();
+        case 'pwdold':
+            checkOldPwd();
             break;
         case 'email':
             checkEmail();

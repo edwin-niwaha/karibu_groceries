@@ -15,7 +15,7 @@
     <link href="../assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="../Style/chosen.css" rel="stylesheet" /><!-- Important for searhable dropdwn-->
     <link href="../users/css/style.css" rel="stylesheet" />
-    
+
     <!--load fontawesome cdn-->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
@@ -26,9 +26,8 @@
 
     <!-- include header.html -->
     <!-- source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-        </script>
+    <script src="../js_header/jquery-3.3.1.js"></script>
+
     <script>
         $(function () {
             $("#header").load("../header.html");
@@ -47,7 +46,8 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="../dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu groceries</span></a>
+                    <a href="../dashboard/dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu
+                            groceries</span></a>
                 </div>
             </div>
 
@@ -242,9 +242,8 @@
                                             autocomplete="off">
                                         <small></small>
                                     </div>
-
                                     <div class="mb-3">
-                                            <input type="submit" value="Register" class="btn-primary"
+                                        <input type="submit" value="Register" class="btn-primary"
                                             style="width: 50%; height: 40px; border-radius: 5px;">
                                     </div>
                                     <!-- <hr style="border: 5px solid green; border-radius: 5px;"> -->
@@ -298,8 +297,8 @@
     <script
         type="text/javascript"> $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true }); </script>
     <!-- End Important for searhable dropdwn-->
-    
-<!-- validate form -->
+
+    <!-- validate form -->
     <script src="../users/js/app.js"></script>
 </body>
 

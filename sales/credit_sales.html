@@ -26,9 +26,8 @@
 
     <!-- include header.html -->
     <!-- source-- https://stackoverflow.com/questions/18712338/make-header-and-footer-files-to-be-included-in-multiple-html-pages -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-        </script>
+    <script src="../js_header/jquery-3.3.1.js"></script>
+
     <script>
         $(function () {
             $("#header").load("../header.html");
@@ -57,7 +56,7 @@
             <!-- LOGO -->
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="../dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu
+                    <a href="../dashboard/dash_a.html" class="logo"><i class="mdi mdi-radar"></i> <span>Karibu
                             groceries</span></a>
                 </div>
             </div>
@@ -286,15 +285,19 @@
                                             <th><label for="unitprice">Price per Kg:</label></th>
                                             <tr>
                                                 <td class="form-field">
-                                                    <input type="text" name="tonn" class="form-group" id="tonn" value="0" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();" maxlength="9"
+                                                    <input type="text" name="tonn" class="form-group" id="tonn"
+                                                        value="0" onkeyup="javascript:this.value=Comma(this.value);"
+                                                        onchange="javascript:sumCalc();" maxlength="9"
                                                         autocomplete="off" style="width: 100%;"
                                                         onkeypress="return functionx(event);">
                                                     <small></small>
                                                 </td>
                                                 <td class="form-field">
-                                                    <input type="text" name="unitprice" id="unitprice" value="0" maxlength="9" class="form-group"
-                                                        autocomplete="off" style="width: 100%;"
-                                                        onkeypress="return functionx(event);" onkeyup = "javascript:this.value=Comma(this.value);" onchange="javascript:sumCalc();">
+                                                    <input type="text" name="unitprice" id="unitprice" value="0"
+                                                        maxlength="9" class="form-group" autocomplete="off"
+                                                        style="width: 100%;" onkeypress="return functionx(event);"
+                                                        onkeyup="javascript:this.value=Comma(this.value);"
+                                                        onchange="javascript:sumCalc();">
                                                     <small></small>
                                                 </td>
                                             </tr>
